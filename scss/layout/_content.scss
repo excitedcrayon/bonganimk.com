@@ -1,0 +1,22 @@
+.page-content{
+    width: 100%;
+    margin: 0 auto;
+    background-color: $lightgrey;
+    .page-section{
+        width: 100%;
+        margin: 0 auto;
+        height: 50vh;
+    } 
+    .header-section{
+        background-color: red;
+    }
+    .intro-section{
+        background-color: blue;
+    }
+    .about-section{
+        background-color: green;
+    }
+    .portfolio-section{
+        background-color: cyan;
+    }
+} 

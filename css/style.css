@@ -1,0 +1,33 @@
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap");
+* {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box; }
+  *::before, *::after {
+    -webkit-box-sizing: inherit;
+    box-sizing: inherit; }
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  overflow-x: hidden;
+  line-height: 1;
+  font-family: 'Quicksand','Helvetica', sans-serif; }
+
+.page-content {
+  width: 100%;
+  margin: 0 auto;
+  background-color: #eee; }
+  .page-content .page-section {
+    width: 100%;
+    margin: 0 auto;
+    height: 50vh; }
+  .page-content .header-section {
+    background-color: red; }
+  .page-content .intro-section {
+    background-color: blue; }
+  .page-content .about-section {
+    background-color: green; }
+  .page-content .portfolio-section {
+    background-color: cyan; }
