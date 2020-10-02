@@ -1,0 +1,24 @@
+@mixin transform($property){
+    -webkit-transform: $property;
+    -ms-transform: $property;
+    transform: $property;
+}
+@mixin transform-origin($property){
+    -webkit-transform-origin: $property;
+    -ms-transform-origin: $property;
+    transform-origin: $property;
+}
+@mixin transition($property){
+    -webkit-transition: $property;
+    -moz-transition: $property;
+    -o-transition: $property;
+    transition: $property;
+}
+@mixin displayFlexAlignCenterWrap{
+    display: -ms-flex;
+    display: flex;
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
+}

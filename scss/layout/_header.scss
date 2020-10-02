@@ -1,0 +1,97 @@
+.header__component{
+    width: 100%;
+    margin: 0 auto;
+    padding: 0.75rem;
+    position: fixed;
+    z-index: 10000;
+    @include displayFlexAlignCenterWrap;
+    .menu__icon,
+    nav{
+        -ms-flex: 1 0 auto;
+        flex: 1 0 auto;
+        width: 100%;
+    }
+    .menu__icon{
+        display: none;
+        cursor: pointer;
+        max-width: 5%;
+        > div{
+            width: 35px;
+            height: 5px;
+            margin: 6px 0;
+            opacity: 1;
+            background-color: $white;
+            @include transition(0.4s);
+        }
+    }
+    .menu__icon.active-menu{
+        .icon-one{
+            @include transform(rotate(-45deg) translate(-9px, 6px));
+        }
+        .icon-two{ opacity: 0; }
+        .icon-three {
+            @include transform(rotate(45deg) translate(-9px, -7px));
+        }
+    }
+    nav{
+        max-width: 95%;
+        text-align: center;
+        ul{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            list-style-type: none;
+            display: inline-block;
+            @include transform(scale(1));
+            @include transition(0.3s ease 0.2s);
+            li{ 
+                display: inherit; 
+                position: relative;
+                &::before{
+                    content: '';
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    width: 0;
+                    border-bottom: 2px solid orange;
+                    @include transition(0.75s ease);
+                }
+                &:hover{
+                    &::before{ width: 100%; }
+                    a{ top: -5px; }
+                }
+                &:not(:focus){ 
+                    @include transition(0.45s ease);
+                }
+            }
+        }
+        a{
+            color: $white;
+            padding: 10px 15px;
+            display: inherit;
+            position: relative;
+            top: 0;
+            font-weight: 400;
+            text-transform: uppercase;
+            @include transition(0.45s ease);
+        }
+    }
+}
+header.header__component.header-scroll{
+    nav{
+        ul{
+            @include transform(scale(1.05));
+        }
+    }
+}
+@media only screen and (max-width: 650px) and (orientation: portrait){
+    .header__component{
+        .menu__icon{
+            display: inline-block;
+            max-width: 35px;
+        }
+        nav{
+            max-width: 100% !important;
+        }
+    }
+}

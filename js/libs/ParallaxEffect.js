@@ -8,7 +8,6 @@ var ParallaxEffect = function (selector) {
         this.elemSelector = element;
     }
     this.winScroll = window.pageYOffset;
-    console.log(this.winScroll);
     this.init();
 };
 ParallaxEffect.prototype.init = function () {
