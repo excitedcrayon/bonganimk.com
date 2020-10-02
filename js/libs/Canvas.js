@@ -18,7 +18,7 @@ const strokeColor = {
     l: parseInt(canvas.getAttribute('data-stroke-lightness'))
 };
 
-const backgroundColor = {
+const bgColor = {
     r: parseFloat(canvas.getAttribute('data-bg-red')),
     g: parseFloat(canvas.getAttribute('data-bg-green')),
     b: parseFloat(canvas.getAttribute('data-bg-blue')),
@@ -43,7 +43,7 @@ function animateCanvas(){
 
     requestAnimationFrame(animateCanvas);
     
-    ctx.fillStyle = 'rgba(0, 0, 0, 0.01)';
+    ctx.fillStyle = `rgba(${bgColor.r}, ${bgColor.g}, ${bgColor.b}, ${bgColor.a})`;
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     ctx.beginPath();
