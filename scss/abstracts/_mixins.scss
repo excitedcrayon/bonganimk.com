@@ -8,11 +8,21 @@
     -ms-transform-origin: $property;
     transform-origin: $property;
 }
+@mixin transform-style($property){
+    -webkit-transform-style: $property;
+    transform-style: $property;
+}
 @mixin transition($property){
     -webkit-transition: $property;
     -moz-transition: $property;
     -o-transition: $property;
     transition: $property;
+}
+@mixin transition-delay($property){
+    -webkit-transition-delay: $property;
+    -moz-transition-delay: $property;
+    -o-transition-delay: $property;
+    transition-delay: $property;
 }
 @mixin displayFlexAlignCenterWrap{
     display: -ms-flex;
@@ -21,4 +31,16 @@
     align-items: center;
     -webkit-flex-wrap: wrap;
     flex-wrap: wrap;
+}
+@mixin tableGrid{
+    &::before,
+    &::after{
+        content: '';
+        display: table;
+        clear: both;
+    }
+}
+@mixin clip-path($property){
+    -webkit-clip-path: $property;
+    clip-path: $property;
 }

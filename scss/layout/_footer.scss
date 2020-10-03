@@ -1,0 +1,99 @@
+footer{
+    width: 100%;
+    padding: 1rem;
+    overflow: inherit;
+    border-top: 1px solid rgba($lightgrey, 0.15);
+    .inner-footer-content{
+        width: 100%;
+        margin: 0 auto;
+        @include displayFlexAlignCenterWrap;
+        * { color: $white; }
+        .copyright,
+        .profiles{
+            -ms-flex: 1 0 auto;
+            flex: 1 0 auto;
+            width: 100%;
+            max-width: 50%;
+            margin-bottom: 10px;
+        }
+        .profiles{
+            @include tableGrid;
+            a {
+                float: left;
+                width: 100%;
+                max-width: 50%;
+                img,span{
+                    display: inline-block; 
+                    vertical-align: middle;
+                }
+                img{
+                    width: 100%;
+                    height: 100%;
+                    max-width: 25px;
+                    max-height: 25px;
+                    margin-right: 0.5rem;
+                    object-fit: contain;
+                    object-position: center;
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 1024px){
+    footer{
+        .inner-footer-content{ 
+            max-width: 1000px; 
+            .copyright{ 
+                text-align: center; 
+                margin-left: -1rem;
+            }
+            .profiles {
+                a { max-width: 40%; }
+            }
+        }
+    }
+}
+@media only screen and (max-width: 690px) and (orientation: landscape){
+    footer{
+        .inner-footer-content{
+            .copyright{ max-width: 35% !important; }
+            .profiles { max-width: 65% !important; }
+        }
+    }
+}
+@media only screen and (max-width: 650px) and (orientation: portrait){
+    footer{
+        .inner-footer-content{
+            .copyright,
+            .profiles{
+                max-width: 100% !important;
+            }
+            .copyright{ 
+                text-align: center; 
+                margin-bottom: 1rem;
+            }
+            .profiles{
+                a{
+                    text-align: center;
+                    img{
+                        max-width: 15px;
+                        max-height: 15px;
+                    }
+                    span{ font-size: 14px; }
+                }
+            }
+        }
+    }
+}
+@media only screen and (max-width: 320px) and (orientation: portrait){
+    footer{
+        .inner-footer-content{
+            .profiles{
+                a{ 
+                    span { font-size: 13px; }
+                }
+            }
+        }
+    }
+}

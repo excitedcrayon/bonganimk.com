@@ -8,16 +8,18 @@ const Header = function(selector){
     let icon = document.querySelector(selector);
     const iconClass = 'active-menu'; 
 
-    icon.addEventListener('click', function(){
-        let state = this.getAttribute('data-menu-state');
-        if(state === 'false'){
-            this.setAttribute('data-menu-state', 'true');
-            this.classList.add(iconClass);
-        }else{
-            this.setAttribute('data-menu-state', 'false');
-            this.classList.remove(iconClass);
-        }
-    });
+    if(icon.length > 0){
+        icon.addEventListener('click', function(){
+            let state = this.getAttribute('data-menu-state');
+            if(state === 'false'){
+                this.setAttribute('data-menu-state', 'true');
+                this.classList.add(iconClass);
+            }else{
+                this.setAttribute('data-menu-state', 'false');
+                this.classList.remove(iconClass);
+            }
+        });
+    }
 
     headerAnimate();
 };
@@ -73,4 +75,17 @@ const ElementDataInView = function(selector){
 
         }, DEBOUNCER_INTERVAL);
     }
+};
+
+const GetGitProjects = function(){
+    let URL = 'https://api.github.com/users/excitedcrayon/repos';
+    fetch(URL)
+    .then(function(response){
+        response.json().then(function(data){
+            console.log(data);
+        });
+    })
+    .catch(function(error){
+        console.log('Fetch error: ' + error);
+    });
 };

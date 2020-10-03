@@ -17,8 +17,17 @@ body{
     overflow-x: hidden;
     line-height: 1;
     font-family: 'Quicksand','Helvetica', sans-serif;
+    background-color: #000;
 }
 
-a{
-    text-decoration: none;
+a{text-decoration: none;}
+h1,h2,h3,h4,h5,h6{
+    margin: 0;
+    padding: 0;
+    line-height: 1;
+}
+article, audio, video, img, blockquote{
+    margin: 0;
+    padding: 0;
+    display: inline-block;
 }

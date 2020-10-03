@@ -4,6 +4,8 @@
     padding: 0.75rem;
     position: fixed;
     z-index: 10000;
+    background-color: transparent;
+    @include transition(0.4s ease-in-out);
     @include displayFlexAlignCenterWrap;
     .menu__icon,
     nav{
@@ -77,11 +79,17 @@
         }
     }
 }
-header.header__component.header-scroll{
+.header__component.header-scroll{
+    background-color: rgba($black, 0.75);
     nav{
         ul{
             @include transform(scale(1.05));
         }
+    }
+}
+@media (min-width: 700px){
+    .header__component.header-scroll{
+        @include transform(scale(1.35));
     }
 }
 @media only screen and (max-width: 650px) and (orientation: portrait){
