@@ -21,18 +21,16 @@ const Header = function(selector){
         });
     }
 
-    headerAnimate();
+    Header.prototype.headerAnimate();
 };
-
-function headerAnimate(){
-
+Header.prototype.headerAnimate = function(){
     let headerComponent = document.querySelector('.header__component');
     let headerComponentHeight = headerComponent.getBoundingClientRect().height;
 
     let winScroll = window.pageYOffset;
 
     return ( winScroll > headerComponentHeight ) ? headerComponent.classList.add('header-scroll') : headerComponent.classList.remove('header-scroll') ;
-}
+};
 
 /**
  * Controls the page content top position when viewport is resized
@@ -77,15 +75,47 @@ const ElementDataInView = function(selector){
     }
 };
 
+/**
+ * Gets JSON data of my Github projects
+ */
 const GetGitProjects = function(){
-    let URL = 'https://api.github.com/users/excitedcrayon/repos';
+    let URL = 'https://api.github.com/users/excitedcrayon/repos?per_page=20';
     fetch(URL)
     .then(function(response){
         response.json().then(function(data){
-            console.log(data);
+            GetGitProjects.prototype.renderGitProjects(data);
         });
     })
     .catch(function(error){
         console.log('Fetch error: ' + error);
     });
+};
+GetGitProjects.prototype.renderGitProjects = function(data){
+
+    let gitProjectsContainer = document.querySelector('.git-projects');
+
+    for ( let i = 0; i < data.length; i++){
+
+        if(data[i]['language'] !== null){
+            //console.log(data[i]);
+
+            // div element container
+            let projectCard = document.createElement('div');
+            projectCard.setAttribute('title', data[i]['description']);
+            projectCard.className = 'project-card';
+            gitProjectsContainer.appendChild(projectCard);
+
+            // href link to git project
+            let link = document.createElement('a');
+            link.setAttribute('href', data[i]['html_url']);
+            link.setAttribute('target', '_blank');
+            link.innerHTML = data[i]['name'];
+            projectCard.appendChild(link);
+
+            // span tag that displays the project language
+            let tag = document.createElement('span');
+            tag.innerHTML = data[i]['language'];
+            projectCard.appendChild(tag);
+        }
+    }
 };

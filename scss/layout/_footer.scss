@@ -22,9 +22,16 @@ footer{
                 float: left;
                 width: 100%;
                 max-width: 50%;
+                &:hover{
+                    span{ color: $orange; }
+                    img{
+                        @include transform(scale(0.9));
+                    }
+                }
                 img,span{
                     display: inline-block; 
                     vertical-align: middle;
+                    @include transition(0.2s linear);
                 }
                 img{
                     width: 100%;
@@ -34,6 +41,7 @@ footer{
                     margin-right: 0.5rem;
                     object-fit: contain;
                     object-position: center;
+                    @include transform(scale(1));
                 }
             }
         }

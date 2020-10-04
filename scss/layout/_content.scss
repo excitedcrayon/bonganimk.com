@@ -3,9 +3,9 @@
     margin: 0 auto;
     .page-section{
         width: 100%;
-        //height: 50vh;
         margin: 0 auto;
         position: relative;
+        overflow: hidden;
         @include transition(0.5s ease-in-out);
         h1,h2,h3,h4,h5,h6{
             color: $white;
@@ -16,12 +16,6 @@
         }
         .inner-section-content{
             width: 100%;
-            padding: 1rem;
-            //position: absolute;
-            //top: 50%;
-            //left: 0;
-            //right: 0;
-            //@include transform(translateY(-50%));
             @include displayFlexAlignCenterWrap;
             .section-title,
             article{
@@ -44,14 +38,14 @@
             width: 100%;
             max-width: 500px;
             height: 2px;
-            background-color: $white; 
+            background-color: $orange; 
             opacity: 0.5;
         }
         .horizontal-line.left{ left: 0; }
         .horizontal-line.right { right: 0; }
     } 
-    .page-section.elem-in-view{
-        //border: 1px solid red;
+    .page-section:not(.header-section){
+        padding: 1.5rem;
     }
     .page-section.header-section{
         height: 50vh;
@@ -75,7 +69,7 @@
             }
         }
     }
-    .intro-section{
+    .about-section{
         .mugshot{
             margin: 0 auto;
             width: 100%;
@@ -91,7 +85,7 @@
             @include transform-style(preserve-3d);
             @include transition(0.4s ease);
             &::after{
-                content: '';
+                //content: '';
                 position: absolute;
                 top: calc(2% + 10px);
                 left: calc(10% - 50px);
@@ -115,7 +109,7 @@
             }
         }
     }
-    .intro-section.elem-in-view{
+    .about-section.elem-in-view{
         .mugshot{
             top: 0;
             opacity: 1;
@@ -130,6 +124,120 @@
             opacity: 1;
         }
     }
+    .projects-section{
+        @include displayFlexAlignCenterWrap;
+        .git-projects,
+        .other-projects{
+            -ms-flex: 1 0 auto;
+            flex: 1 0 auto;
+            width: 100%;
+            max-width: 50%;
+        }
+        span{ color: $white; }
+        .git-projects{
+            opacity: 0;
+            @include tableGrid;
+            @include transform(translateX(100%));
+            @include transition(0.5s ease);
+            .project-card{
+                float: left;
+                width: 100%;
+                max-width: 48%;
+                margin-right: 1.5%;
+                margin-bottom: 1rem;
+                padding: 1rem;
+                border-radius: 4px;
+                border: 1px solid rgba($lightgrey, 0.15);
+                box-shadow: none;
+                @include transition(0.1s linear);
+                a,span{
+                    display: inline-block;
+                }
+                a{ 
+                    color: $orange;
+                    width: 100%;
+                }
+                span{
+                    margin-top: 3px;
+                    font-size: 12px;
+                }
+            }
+        }
+        .other-projects{
+            padding: 0.75rem;
+            p {
+                opacity: 0;
+                position: relative;
+                top: 20px;
+                @include transition(0.4s ease);
+                &:nth-child(2){
+                    @include transition-delay(0.2s);
+                }
+                &:nth-child(3){
+                    @include transition-delay(0.3s);
+                }
+                &:nth-child(4){
+                    @include transition-delay(0.4s);
+                }
+            }
+        }
+    }
+    .projects-section.elem-in-view{
+        .git-projects{
+            opacity: 1;
+            @include transform(translateX(0));
+        }
+        .other-projects{
+            p{
+                opacity: 1;
+                top: 0;
+            }
+        }
+    }
+    .contact-section{
+        .contact-content{
+            width: 100%;
+            margin: 0 auto;
+            position: relative;
+            top: 20px;
+            opacity: 0;
+            @include transition(0.4s ease);
+            .contact-button{
+                text-align: center;
+                position: relative;
+                button{
+                    cursor: pointer;
+                    border: 0;
+                    outline: none;
+                    background-color: $orange;
+                    padding: 10px 15px;
+                    font-size: 1rem;
+                    font-weight: 600;
+                    border-radius: 4px;
+                    position: relative;
+                    z-index: 1;
+                    &::before{
+                        content: '';
+                        position: absolute;
+                        bottom: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 0;
+                        border-radius: 4px;
+                        background-color: $white;
+                        z-index: -1;
+                        @include transition(0.2s linear);
+                    }
+                }
+            }
+        }
+    }
+    .contact-section.elem-in-view{
+        .contact-content{
+            top: 0;
+            opacity: 1;
+        }
+    }
 } 
 @media (min-width: 1024px){
     .page-content{
@@ -139,6 +247,24 @@
         .page-section.header-section{
             .header-title{
                 left: calc(5% + 20px);
+            }
+        }
+        .about-section{
+            .git-projects{
+                .project-card{
+                    &:hover{
+                        box-shadow: 0 0 10px rgba($orange, 0.35);
+                    }
+                }
+            }
+        }
+        .contact-section{
+            .contact-button{
+                button{
+                    &:hover{
+                        &::before{ height: 100%; }
+                    }
+                }
             }
         }
     }
@@ -158,6 +284,16 @@
         }
     }
 }
+@media (max-width: 1000px){
+    .page-content{
+        .projects-section{
+            .other-projects,
+            .git-projects{
+                max-width: 100% !important;
+            }
+        }
+    }
+}
 @media only screen and (max-width: 900px) and (orientation: landscape){
     .page-content{
         .page-section.header-section{
@@ -165,13 +301,48 @@
         }
     }
 }
+@media only screen and (max-width: 1024px) and (orientation: portrait){
+    .page-content{
+        .projects-section{
+            .other-projects,
+            .git-projects{
+                max-width: 100% !important;
+            }
+            .git-projects{
+                max-height: 300px;
+                overflow-y: auto;
+            }
+        }
+    }
+}
+@media only screen and (max-width: 768px) and (orientation: portrait){
+    .page-content{
+        .projects-section{
+            .other-projects{ padding: unset; }
+        }
+    }
+}
 @media only screen and (max-width: 650px) and (orientation: portrait){
     .page-content{
+        .inner-section-content{
+            .section-title,
+            article{
+                max-width: 100% !important;
+            }
+            .mugshot{ max-width: 100% !important; }
+        }
         .page-section.header-section{
-            //height: 100vh;
             .header-title{
                 h1{
                     span{ font-size: 1.5rem; }
+                }
+            }
+        }
+        .projects-section{
+            .git-projects{
+                .project-card{
+                    max-width: 100% !important;
+                    margin-right: unset;
                 }
             }
         }

@@ -36,7 +36,6 @@
         }
     }
     nav{
-        max-width: 95%;
         text-align: center;
         ul{
             margin: 0;
@@ -60,7 +59,7 @@
                 }
                 &:hover{
                     &::before{ width: 100%; }
-                    a{ top: -5px; }
+                    a{ color: $orange; }
                 }
                 &:not(:focus){ 
                     @include transition(0.45s ease);
@@ -71,8 +70,8 @@
             color: $white;
             padding: 10px 15px;
             display: inherit;
-            position: relative;
-            top: 0;
+            //position: relative;
+            //top: 0;
             font-weight: 400;
             text-transform: uppercase;
             @include transition(0.45s ease);
