@@ -154,7 +154,6 @@ article, audio, video, img, blockquote, button {
     width: 100%;
     margin: 0 auto;
     position: relative;
-    overflow: hidden;
     -webkit-transition: 0.5s ease-in-out;
     -moz-transition: 0.5s ease-in-out;
     -o-transition: 0.5s ease-in-out;
@@ -183,12 +182,24 @@ article, audio, video, img, blockquote, button {
         .page-content .page-section .inner-section-content .section-title h1 {
           font-size: 3.5rem;
           text-align: center; }
+    .page-content .page-section .vertical-line {
+      position: absolute;
+      bottom: 0;
+      width: 3px;
+      max-width: 500px;
+      height: 50%;
+      background-color: #ffa500;
+      opacity: 0.5; }
+    .page-content .page-section .vertical-line.left {
+      left: 0; }
+    .page-content .page-section .vertical-line.right {
+      right: 0; }
     .page-content .page-section .horizontal-line {
       position: absolute;
       bottom: 0;
       width: 100%;
       max-width: 500px;
-      height: 2px;
+      height: 3px;
       background-color: #ffa500;
       opacity: 0.5; }
     .page-content .page-section .horizontal-line.left {
@@ -228,22 +239,20 @@ article, audio, video, img, blockquote, button {
     top: 10px;
     background: url("../res/img/mugshot.png") no-repeat center;
     background-size: cover;
-    opacity: 0;
-    -webkit-clip-path: circle(50% at 90% 5%);
-    clip-path: circle(50% at 90% 5%);
+    -webkit-clip-path: circle(20% at center);
+    clip-path: circle(20% at center);
     -webkit-transform-style: preserve-3d;
     transform-style: preserve-3d;
-    -webkit-transition: 0.4s ease;
-    -moz-transition: 0.4s ease;
-    -o-transition: 0.4s ease;
-    transition: 0.4s ease; }
+    -webkit-transition: 0.8s ease;
+    -moz-transition: 0.8s ease;
+    -o-transition: 0.8s ease;
+    transition: 0.8s ease; }
     .page-content .about-section .mugshot::after {
       position: absolute;
       top: calc(2% + 10px);
       left: calc(10% - 50px);
       width: 100%;
       height: 100%;
-      opacity: 0;
       background-color: #eee;
       z-index: -1;
       -webkit-transform: translateZ(-1px);
@@ -256,7 +265,6 @@ article, audio, video, img, blockquote, button {
   .page-content .about-section p {
     position: relative;
     top: 10px;
-    opacity: 0;
     -webkit-transition: 0.4s ease;
     -moz-transition: 0.4s ease;
     -o-transition: 0.4s ease;
@@ -301,7 +309,11 @@ article, audio, video, img, blockquote, button {
       -webkit-transition: 0.5s ease;
       -moz-transition: 0.5s ease;
       -o-transition: 0.5s ease;
-      transition: 0.5s ease; }
+      transition: 0.5s ease;
+      -webkit-transition-delay: 0.5s;
+      -moz-transition-delay: 0.5s;
+      -o-transition-delay: 0.5s;
+      transition-delay: 0.5s; }
       .page-content .projects-section .git-projects::before, .page-content .projects-section .git-projects::after {
         content: '';
         display: table;
@@ -370,7 +382,13 @@ article, audio, video, img, blockquote, button {
     -webkit-transition: 0.4s ease;
     -moz-transition: 0.4s ease;
     -o-transition: 0.4s ease;
-    transition: 0.4s ease; }
+    transition: 0.4s ease;
+    -webkit-transition-delay: 0.3s;
+    -moz-transition-delay: 0.3s;
+    -o-transition-delay: 0.3s;
+    transition-delay: 0.3s; }
+    .page-content .contact-section .contact-content p {
+      text-align: center; }
     .page-content .contact-section .contact-content .contact-button {
       text-align: center;
       position: relative; }
@@ -402,6 +420,81 @@ article, audio, video, img, blockquote, button {
   .page-content .contact-section.elem-in-view .contact-content {
     top: 0;
     opacity: 1; }
+  .page-content .contact-form-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 0;
+    overflow: hidden;
+    overflow-y: auto;
+    background-color: #fff;
+    z-index: 20000;
+    -webkit-transition: 0.4s ease;
+    -moz-transition: 0.4s ease;
+    -o-transition: 0.4s ease;
+    transition: 0.4s ease; }
+    .page-content .contact-form-container button {
+      display: inline-block;
+      outline: none;
+      border: 0;
+      padding: 10px 15px; }
+    .page-content .contact-form-container .close-form-button {
+      text-align: right;
+      position: relative;
+      display: block;
+      margin: 2rem auto; }
+      .page-content .contact-form-container .close-form-button button {
+        background-color: transparent;
+        -webkit-transform: scale(3);
+        -ms-transform: scale(3);
+        transform: scale(3); }
+    .page-content .contact-form-container .form-group {
+      margin: 1rem 0; }
+      .page-content .contact-form-container .form-group label,
+      .page-content .contact-form-container .form-group input[type="text"],
+      .page-content .contact-form-container .form-group textarea {
+        display: inline-block;
+        width: 100%; }
+      .page-content .contact-form-container .form-group label {
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+        font-size: 1.25rem;
+        position: relative; }
+        .page-content .contact-form-container .form-group label sup {
+          position: relative;
+          top: 10px;
+          font-size: 1.25rem;
+          color: #c00; }
+      .page-content .contact-form-container .form-group input[type="text"],
+      .page-content .contact-form-container .form-group textarea {
+        border: 1px solid #ccc;
+        padding: 0.55rem;
+        border-radius: 5px;
+        font-size: 1.25rem;
+        -webkit-transition: 0.3s ease;
+        -moz-transition: 0.3s ease;
+        -o-transition: 0.3s ease;
+        transition: 0.3s ease; }
+      .page-content .contact-form-container .form-group textarea {
+        resize: none; }
+      .page-content .contact-form-container .form-group #submit {
+        font-size: 1rem;
+        border-radius: 5px;
+        color: #fff;
+        background-color: #5CB85C; }
+  .page-content #contactForm {
+    display: block;
+    margin: 0 auto;
+    padding: 2rem; }
+  .page-content #contactForm.error input[type="text"],
+  .page-content #contactForm.error textarea {
+    border: 1px solid #c00; }
+
+body.contact-active {
+  height: 100vh; }
+  body.contact-active .contact-form-container {
+    height: 100vh; }
 
 @media (min-width: 1024px) {
   .page-content .page-section:not(.header-section) {
@@ -411,17 +504,23 @@ article, audio, video, img, blockquote, button {
   .page-content .about-section .git-projects .project-card:hover {
     box-shadow: 0 0 10px rgba(255, 165, 0, 0.35); }
   .page-content .contact-section .contact-button button:hover::before {
-    height: 100%; } }
+    height: 100%; }
+  .page-content .contact-form-container .close-form-button {
+    max-width: 800px; }
+  .page-content #contactForm {
+    max-width: 800px; } }
 
 @media (min-width: 767px) {
   .page-content .page-section p {
     font-size: 1.5rem; }
   .page-content .page-section.header-section canvas {
-    -webkit-transform: scale(1.5);
-    -ms-transform: scale(1.5);
-    transform: scale(1.5); }
+    -webkit-transform: scale(1.05);
+    -ms-transform: scale(1.05);
+    transform: scale(1.05); }
   .page-content .page-section.header-section .header-title h1 span {
-    font-size: 4rem; } }
+    font-size: 4rem; }
+  .page-content .page-section.projects-section .git-projects p {
+    text-align: center; } }
 
 @media (max-width: 1000px) {
   .page-content .projects-section .other-projects,
@@ -454,7 +553,24 @@ article, audio, video, img, blockquote, button {
     font-size: 1.5rem; }
   .page-content .projects-section .git-projects .project-card {
     max-width: 100% !important;
-    margin-right: unset; } }
+    margin-right: unset; }
+  .page-content .contact-form-container .form-group #submit {
+    width: 100%; } }
+
+@media (max-width: 360px) {
+  .header__component nav ul {
+    display: -ms-flex;
+    display: flex;
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap; }
+    .header__component nav ul li {
+      -ms-flex: 1 0 auto;
+      flex: 1 0 auto;
+      width: 100%;
+      max-width: 50%;
+      padding-left: 1.25rem; } }
 
 footer {
   width: 100%;

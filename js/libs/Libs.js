@@ -1,4 +1,14 @@
 /**
+ * Attributes | constant values 
+ */
+const Attribs = {
+    DEBOUNCER_INTERVAL: 1000,
+    winScrollYHeight: 50,
+    winScrollOffsetTop: 100,
+    contactActive: 'contact-active'
+};
+
+/**
  * 
  * @param {*} selector 
  * Controls burger menu icon state and animation
@@ -33,6 +43,18 @@ Header.prototype.headerAnimate = function(){
 };
 
 /**
+ * Animate the size of the header component
+ */
+const HeaderAnimate = function(){
+    let headerComponent = document.querySelector('.header__component');
+    let headerComponentHeight = headerComponent.getBoundingClientRect().height;
+
+    let winScroll = window.pageYOffset;
+
+    return ( winScroll > headerComponentHeight ) ? headerComponent.classList.add('header-scroll') : headerComponent.classList.remove('header-scroll') ;
+};
+
+/**
  * Controls the page content top position when viewport is resized
  */
 const Content = function(){
@@ -53,9 +75,8 @@ const Content = function(){
 const ElementDataInView = function(selector){
 
     let elem = document.querySelectorAll("[data-in-view]");
-    let scrollPos = Math.ceil(window.pageYOffset + (window.innerHeight * (40/ 100)));
+    let scrollPos = Math.ceil(window.pageYOffset + (window.innerHeight * (Attribs.winScrollYHeight/ 100)));
     let debouncer = null;
-    const DEBOUNCER_INTERVAL = 1000;
 
     if(!debouncer){
         debouncer = setTimeout(function(){
@@ -71,7 +92,7 @@ const ElementDataInView = function(selector){
                 }
             }
 
-        }, DEBOUNCER_INTERVAL);
+        }, Attribs.DEBOUNCER_INTERVAL);
     }
 };
 
@@ -97,7 +118,6 @@ GetGitProjects.prototype.renderGitProjects = function(data){
     for ( let i = 0; i < data.length; i++){
 
         if(data[i]['language'] !== null){
-            //console.log(data[i]);
 
             // div element container
             let projectCard = document.createElement('div');
@@ -118,4 +138,88 @@ GetGitProjects.prototype.renderGitProjects = function(data){
             projectCard.appendChild(tag);
         }
     }
+};
+
+/**
+ * Scrolls to the section element based on the anchor clicked
+ */
+const SmoothScrollTo = function(){
+    let anchor = document.querySelectorAll('.header__component .header-link');
+
+    for(let a = 0; a < anchor.length; a++){
+        let currentAnchor = anchor[a];
+
+        currentAnchor.addEventListener('click', function(){
+            if(this.id !== ''){
+                SmoothScrollTo.prototype.scrollTo(document.querySelector('.page-content #'+this.id));
+            }else{
+                SmoothScrollTo.prototype.scrollToTop();
+            }
+        });
+    }
+}
+SmoothScrollTo.prototype.scrollTo = function(element){
+    setTimeout(function(){
+        
+        window.scroll({
+            behavior: 'smooth',
+            left: 0,
+            top: element.offsetTop - Attribs.winScrollOffsetTop
+        });
+
+    }, Attribs.DEBOUNCER_INTERVAL / 2);
+}
+SmoothScrollTo.prototype.scrollToTop = function(){
+    setTimeout(function(){
+
+        window.scroll({
+            behavior: 'smooth',
+            left: 0,
+            top: 0
+        });
+
+    }, Attribs.DEBOUNCER_INTERVAL / 2);
+}
+
+const SubmitContactForm = function(){
+    let contactButton = document.querySelector('.contact-button #contactButton');
+    contactButton.addEventListener('click', function(){
+        document.body.classList.toggle(Attribs.contactActive);
+    });
+
+    let closeFormButton = document.querySelector('.close-form-button button');
+    closeFormButton.addEventListener('click', function(){
+        document.body.classList.remove(Attribs.contactActive);
+    });
+
+    let contactForm = document.querySelector('#contactForm');
+    let contactName = document.querySelector('#contactForm #contactName');
+    let contactMessage = document.querySelector('#contactForm #contactName');
+    
+    let submitFormButton = document.querySelector('#contactForm #submit');
+    submitFormButton.addEventListener('click', function(event){
+
+        if(contactName.value === '' && contactMessage.value === ''){
+            contactForm.classList.add('error');
+            event.preventDefault();
+        }else{
+            SubmitContactForm.prototype.getFormData(contactName, contactMessage);
+        }
+    });
+};
+SubmitContactForm.prototype.getFormData = function(name, message){
+    let data = "name="+name+"&message="+message;
+    let URL = location.origin + '/components/send-email.php';
+
+    let xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function(){
+        if(this.readyState == 4 && this.status == 200){
+            console.log(response);
+            location.href = location.origin;
+        }
+        xhr.open('POST', URL, true);
+        xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhr.send(data);
+
+    };
 };

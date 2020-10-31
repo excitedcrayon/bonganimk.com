@@ -5,8 +5,8 @@
         width: 100%;
         margin: 0 auto;
         position: relative;
-        overflow: hidden;
         @include transition(0.5s ease-in-out);
+        //overflow: hidden;
         h1,h2,h3,h4,h5,h6{
             color: $white;
         }
@@ -32,14 +32,25 @@
                 }
             }
         }
+        .vertical-line{
+            position: absolute;
+            bottom: 0;
+            width: 3px;
+            max-width: 500px;
+            height: 50%;
+            background-color: $orange; 
+            opacity: 0.5; 
+        }
+        .vertical-line.left{ left: 0; }
+        .vertical-line.right{ right: 0; }
         .horizontal-line{
             position: absolute;
             bottom: 0;
             width: 100%;
             max-width: 500px;
-            height: 2px;
+            height: 3px;
             background-color: $orange; 
-            opacity: 0.5;
+            opacity: 0.5; 
         }
         .horizontal-line.left{ left: 0; }
         .horizontal-line.right { right: 0; }
@@ -80,10 +91,11 @@
             top: 10px;
             background: url('../res/img/mugshot.png') no-repeat center;
             background-size: cover;
-            opacity: 0;
-            @include clip-path(circle(50% at 90% 5%));
+            @include clip-path(circle(20% at center));
             @include transform-style(preserve-3d);
-            @include transition(0.4s ease);
+            @include transition(0.8s ease);
+            //opacity: 0;
+            //@include clip-path(circle(50% at 90% 5%));
             &::after{
                 //content: '';
                 position: absolute;
@@ -91,18 +103,18 @@
                 left: calc(10% - 50px);
                 width: 100%;
                 height: 100%;
-                opacity: 0;
                 background-color: $lightgrey;
                 z-index: -1;
-                //@include clip-path(circle(50% at 90% 5%));
                 @include transform(translateZ(-1px));
                 @include transition(0.65s ease 0.45s);
+                //opacity: 0;
+                //@include clip-path(circle(50% at 90% 5%));
             }
         }
         p{
             position: relative;
             top: 10px;
-            opacity: 0;
+            //opacity: 0;
             @include transition(0.4s ease);
             &:nth-child(2){
                 @include transition-delay(0.1s);
@@ -139,6 +151,7 @@
             @include tableGrid;
             @include transform(translateX(100%));
             @include transition(0.5s ease);
+            @include transition-delay(0.5s);
             .project-card{
                 float: left;
                 width: 100%;
@@ -202,6 +215,8 @@
             top: 20px;
             opacity: 0;
             @include transition(0.4s ease);
+            @include transition-delay(0.3s);
+            p { text-align: center; }
             .contact-button{
                 text-align: center;
                 position: relative;
@@ -238,7 +253,90 @@
             opacity: 1;
         }
     }
+    .contact-form-container{
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 0;
+        overflow: hidden;
+        overflow-y: auto;
+        background-color: $white;
+        z-index: 20000;
+        @include transition(0.4s ease);
+        button{
+            display: inline-block;
+            outline: none;
+            border: 0;
+            padding: 10px 15px;
+        }
+        .close-form-button{
+            text-align: right;
+            position: relative;
+            display: block;
+            margin: 2rem auto;
+            button{
+                background-color: transparent;
+                @include transform(scale(3));
+            }
+        }
+        .form-group{
+            margin: 1rem 0;
+            label,
+            input[type="text"],
+            textarea{
+                display: inline-block;
+                width: 100%;
+            }
+            label{
+                margin-bottom: 0.5rem;
+                font-weight: 600;
+                font-size: 1.25rem;
+                position: relative;
+                sup{
+                    position: relative;
+                    top: 10px;
+                    font-size: 1.25rem;
+                    color: $darkred;
+                }
+            }
+            input[type="text"],
+            textarea{
+                border: 1px solid $mediumgrey;
+                padding: 0.55rem;
+                border-radius: 5px;
+                font-size: 1.25rem;
+                @include transition(0.3s ease);
+            }
+            textarea{
+                resize: none;
+            }
+            #submit{
+                font-size: 1rem;
+                border-radius: 5px;
+                color: $white;
+                background-color: $buttonGreen;
+            }
+        }
+    }
+    #contactForm{   
+        display: block;
+        margin: 0 auto;
+        padding: 2rem;
+    }
+    #contactForm.error{
+        input[type="text"],
+        textarea{
+            border: 1px solid $darkred;
+        }
+    }
 } 
+body.contact-active{
+    height: 100vh;
+    .contact-form-container{
+        height: 100vh
+    }
+}
 @media (min-width: 1024px){
     .page-content{
         .page-section:not(.header-section){
@@ -267,6 +365,14 @@
                 }
             }
         }
+        .contact-form-container{
+            .close-form-button{
+                max-width: 800px;
+            }
+        }
+        #contactForm{
+            max-width: 800px;
+        }
     }
 }
 @media (min-width: 767px){
@@ -275,11 +381,16 @@
             p{ font-size: 1.5rem; }
         }
         .page-section.header-section{
-            canvas{ @include transform(scale(1.5)); }
+            canvas{ @include transform(scale(1.05)); }
             .header-title{
                 h1{ 
                     span{ font-size: 4rem; }
                 }
+            }
+        }
+        .page-section.projects-section{
+            .git-projects{
+                p { text-align: center; }
             }
         }
     }
@@ -343,6 +454,29 @@
                 .project-card{
                     max-width: 100% !important;
                     margin-right: unset;
+                }
+            }
+        }
+        .contact-form-container{
+            .form-group{
+                #submit{
+                    width: 100%;
+                }
+            }
+        }
+    }
+}
+@media (max-width: 360px){
+    .header__component{
+        nav{
+            ul{
+                @include displayFlexAlignCenterWrap;
+                li{
+                    -ms-flex: 1 0 auto;
+                    flex: 1 0 auto;
+                    width: 100%;
+                    max-width: 50%;
+                    padding-left: 1.25rem;
                 }
             }
         }

@@ -1,6 +1,6 @@
 <?php require_once './components/header.php'; ?>
 <div class="page-content">
-        <section id="home" class="page-section header-section" data-in-view="true">
+        <section id="home" class="page-section header-section">
             <canvas id="wave" data-length="0.005" data-amplitude="180" data-frequency="0.01" 
             data-stroke-hue="200" data-stroke-saturation="50" data-stroke-lightness="50"
             data-bg-red="0" data-bg-green="0" data-bg-blue="0" data-bg-alpha="0.01"></canvas>
@@ -20,17 +20,21 @@
                 </div>
                 <article>
                     <p>Welcome to my personal web space. Thank you for taking the time to check out my site.</p>
-                    <p>I am a Web Developer by trade, the only child of two hard-working parents, a law abiding citizen
-                       but above all I am just a regular person who enjoys spending time and learning various discplines in life.</p>
+                    <p>My name is Bongani Mkonto, although I mainly go by my pseudo nickname 'Bongo'.</p>
+                    <p>
+                        I am a Web Developer by trade, the only child of two hard-working parents. Born and raised in Zimbabwe,
+                        I moved to New Zealand at the age of 14 but now I reside in Australia. 
+                    </p>
                 </article>
             </div>
+            <div class="vertical-line left" data-direction="vertical" data-ratey="0.2" data-transition-speed="0.5" data-transition-type="ease"></div>
             <div class="horizontal-line left" data-direction="horizontal" data-ratex="0.2" data-transition-speed="0.5" data-transition-type="linear"></div>
         </section>
         <section id="projects" class="page-section projects-section" data-in-view="true">
             <div class="horizontal-line right" data-direction="horizontal" data-ratex="-0.15" data-transition-speed="0.5" data-transition-type="linear"></div>
             <div class="other-projects">
                 <p>My keen interest in software development varies from websites, mobile applications to desktop applications.</p>    
-                <p>If I am not working on a particular personal project, I am contributing to commercial and and work related projects.</p>
+                <p>If I am not working on a particular personal project, I am contributing to commercial and work related projects.</p>
                 <p>Despite the difficulty and struggle to adapt to rapid advancements in technlogy, I always love the thrill of learning and adopting new software tools and development techniques.</p>
                 <p>Even though I graduated from University with a Java and a bit of C++ background, some of favourite programming languages are PHP and JavaScript.</p>
             </div>
@@ -46,5 +50,6 @@
                 </div>
             </div>
         </section>
+        <?php require_once './components/contact.php'; ?>
 </div>
 <?php require_once './components/footer.php'; ?>
