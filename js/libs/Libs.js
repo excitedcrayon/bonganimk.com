@@ -181,6 +181,9 @@ SmoothScrollTo.prototype.scrollToTop = function(){
     }, Attribs.DEBOUNCER_INTERVAL / 2);
 }
 
+/**
+ * Submits contact form and handles form validation
+ */
 const SubmitContactForm = function(){
     let contactButton = document.querySelector('.contact-button #contactButton');
     contactButton.addEventListener('click', function(){
