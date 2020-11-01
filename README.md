@@ -2,7 +2,7 @@
 
 ## Overview
 
-[Website Link](https://bonganimk.com/)
+[Website Link](https://bonganimk.com/){target="_blank"}
 
 This is a small project that I worked on to create my single web page website using the following;
 
