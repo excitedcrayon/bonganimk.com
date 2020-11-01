@@ -2,7 +2,7 @@
 
  $contact_name = htmlspecialchars($_POST['name']);
  $contact_email = htmlspecialchars($_POST['email']);
- $contact_message = htmlspecialchars($_POST['message']);
+ $contact_message = nl2br(htmlspecialchars($_POST['message']));
  
  $to_email = 'bonganimkonto@gmail.com';
  

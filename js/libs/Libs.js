@@ -225,21 +225,23 @@ SubmitContactForm.prototype.getFormData = function(name, email, message){
     data.append("email", email);
     data.append("message", message);
 
-    fetch(URL, {
+    let postHeaders = {
         method: 'POST',
         body: data,
         mode: 'no-cors',
         headers: new Headers({'Content-Type':'application/json'})
-    }).then((response) => {
+    };
+    
+    new LoadingScreen();
 
-        new LoadingScreen();
-        setTimeout(() => {
-            if(response.status === 200){
-                document.body.classList.add(Attribs.messageSentSelector);
-                new CloseLoadingScreen();
-            }
-        }, Attribs.DEBOUNCER_INTERVAL * 2);
+    fetch(URL, postHeaders)
+    .then((response) => {
 
+        if(response.status === 200){
+            document.body.classList.add(Attribs.messageSentSelector);
+            new CloseLoadingScreen();
+        }
+        
     }).catch((error) => {
         console.log('Fetch error: ' + error);
     });
