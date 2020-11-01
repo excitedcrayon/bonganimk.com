@@ -2,7 +2,7 @@
 
 ## Overview
 
-[Website Link](https://bonganimk.com/){target="_blank"}
+<a href="https://bonganimk.com/" target="_blank">Website Link</a>
 
 This is a small project that I worked on to create my single web page website using the following;
 
