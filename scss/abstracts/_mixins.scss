@@ -44,3 +44,11 @@
     -webkit-clip-path: $property;
     clip-path: $property;
 }
+@mixin animation($property){
+    -webkit-animation: $property;
+    animation: $property;
+}
+@mixin animation-delay($property){
+    -webkit-animation-delay: $property;
+    animation-delay: $property;
+}

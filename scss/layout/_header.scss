@@ -59,7 +59,7 @@
                 }
                 &:hover{
                     &::before{ width: 100%; }
-                    a{ color: $orange; }
+                    //a{ color: $orange; }
                 }
                 &:not(:focus){ 
                     @include transition(0.45s ease);
@@ -70,8 +70,6 @@
             color: $white;
             padding: 10px 15px;
             display: inherit;
-            //position: relative;
-            //top: 0;
             font-weight: 400;
             text-transform: uppercase;
             @include transition(0.45s ease);
@@ -83,6 +81,32 @@
     nav{
         ul{
             @include transform(scale(1.05));
+        }
+    }
+}
+@media (min-width: 1025px){
+    .header__component{
+        nav{
+            ul{
+                li{
+                    &:hover{
+                        a{ color: $orange; }
+                    }
+                }
+            }
+        }
+    }
+}
+@media (max-width: 1024px){
+    .header__component{
+        nav{
+            ul{
+                li{
+                    &::before{
+                        content: unset;
+                    }
+                }
+            }
         }
     }
 }
